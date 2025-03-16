@@ -20,20 +20,39 @@ scrollToTopButton.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Toggle between Login and Signup forms
-const loginForm = document.getElementById('login-form');
-const signupForm = document.getElementById('signup-form');
-const signupLink = document.getElementById('signup-link');
-const loginLink = document.getElementById('login-link');
+// Get the modals
+const loginModal = document.getElementById('loginModal');
+const signupModal = document.getElementById('signupModal');
 
-signupLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    loginForm.style.display = 'none';
-    signupForm.style.display = 'block';
-});
+// Get the buttons that open the modals
+const openLoginBtn = document.getElementById('open-login-signup');
 
-loginLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    signupForm.style.display = 'none';
-    loginForm.style.display = 'block';
-});
+// Get the <span> elements that close the modals
+const closeLoginBtn = document.getElementById('closeLoginBtn');
+const closeSignupBtn = document.getElementById('closeSignupBtn');
+
+// When the user clicks the login/signup button, open the login modal by default
+openLoginBtn.onclick = function() {
+    loginModal.style.display = 'block';
+}
+
+// When the user clicks the close button for login modal, close it
+closeLoginBtn.onclick = function() {
+    loginModal.style.display = 'none';
+}
+
+// When the user clicks the close button for signup modal, close it
+closeSignupBtn.onclick = function() {
+    signupModal.style.display = 'none';
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == loginModal) {
+        loginModal.style.display = 'none';
+    }
+    if (event.target == signupModal) {
+        signupModal.style.display = 'none';
+    }
+}
+
